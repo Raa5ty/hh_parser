@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Результаты поиска
+        </title>     
+    </head>
+    <body>
+       <h1>
+        Результаты поиска
+       </h1>
+       <hr>
+       <h3>Параметры запроса</h3>
+       <ul>
+        <li>{{ region_name }}</li>
+        <li>{{ name }}</li>
+        <li>{{ schedule }}</li>
+       </ul>
+       <p>
+        <a href="http://127.0.0.1:5500/templates/form.html">Изменить параметры</a>
+        </p>
+       <h3>Результаты</h3>
+       <table>
+        <tr>    
+            <th>Навык</th>
+            <th>Процент востребованности</th>
+        </tr>
+    </tr>
+    {% for skill, percentage in skill_percentages %}
+    <tr>    
+        <td>{{ skill }}</td>
+        <td>{{ percentage }}%</td>
+    </tr>
+    {% endfor %}
+</table>
+       <p>
+        <a href="http://127.0.0.1:5500/templates/index.html">Вернуться на главную</a>
+        </p>
+    </body>    
+</html>
