@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Форма поиска
+        </title> 
+    </head>
+    <body>
+       <h1>
+        Форма для поиска вакансий
+        <hr>
+       </h1>
+       <h4>
+        <p>
+            Параметры поиска.
+        </p>
+        <form method="POST" action="{{ url_for('form') }}">
+            <input type="text" name="region_name" value="Москва" placeholder="Введите регион" required>
+            <br><br>
+            <input type="text" name="name" value="Java" placeholder="Введите специализацию" required>
+            <br><br>
+            <select name="schedule" required>
+                <option value="fullDay">Полный день</option>
+                <option value="shift">Сменный график</option>
+                <option value="remote">Удалённая работа</option>
+                <option value="flexible">Гибкий график</option>
+            </select>
+            <br><br>
+            <input type="submit" value="Поиск">
+        </form>
+        <p>
+            <a href="http://127.0.0.1:5500/templates/index.html">Вернуться на главную</a>
+        </p>
+    </h4>
+    </body>    
+</html>
