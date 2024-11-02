@@ -1,0 +1,16 @@
+body {
+    background-color: #f8f9fa;
+}
+
+h1, h3 {
+    color: #343a40;
+}
+
+.table {
+    margin: 20px auto;
+    width: 80%; /* можно подстроить под твои нужды */
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
