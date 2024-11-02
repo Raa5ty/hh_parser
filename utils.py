@@ -62,9 +62,5 @@ def get_skills(params):
     # Подсчет частоты навыков
     skill_counts = Counter(cleaned_skills)
     skill_percentages = {skill: round((count / total_vacancies) * 100, 2) for skill, count in skill_counts.items()}
-    
+
     return skill_percentages, total_vacancies
-
-
-
-
