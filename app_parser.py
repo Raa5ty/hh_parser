@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from collections import Counter
 from utils import find_area_id, get_skills, areas
+from sqlite_db import get_db_connection, save_search_to_db
 import logging
 import os
 
@@ -44,6 +45,9 @@ def form():
 
             # Сортируем навыки по убыванию процента и сохраняем топ-10 в session
             sorted_skills = dict(sorted(skills.items(), key=lambda item: item[1], reverse=True)[:10])
+
+            # Сохранение данных в базу данных
+            save_search_to_db(region_name, name, schedule_display, sorted_skills)
 
             # Сохраняем данные в session для передачи на /results
             session['region_name'] = region_name
