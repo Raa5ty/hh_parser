@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from collections import Counter
 from utils import find_area_id, get_skills, areas
-from sqlite_db import get_db_connection, save_search_to_db
+from orm_save_db import save_search_to_db
 import logging
 import os
 
