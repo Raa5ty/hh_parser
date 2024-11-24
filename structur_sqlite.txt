@@ -1,0 +1,29 @@
+Структура БД
+
+Таблица vacancies
+id (PK, INTEGER) — уникальный идентификатор вакансии.
+name (TEXT) — название вакансии.
+
+Таблица regions
+id (PK, INTEGER) — уникальный идентификатор города.
+name (TEXT) — название города.
+
+Таблица schedules
+id (PK, INTEGER) — уникальный идентификатор графика.
+type (TEXT) — название графика (например, "полный день").
+
+Таблица skills
+id (PK, INTEGER) — уникальный идентификатор навыка.
+name (TEXT) — название навыка (например, "Python", "SQL").
+
+Таблица search_vacancy
+id (PK, INTEGER) — уникальный идентификатор запроса.
+region_id (FK, INTEGER) — ссылка на таблицу regions.
+vacancy_id (FK, INTEGER) — ссылка на таблицу vacancies.
+schedule_id (FK, INTEGER) — ссылка на таблицу schedules.
+query_date (DATE) — дата выполнения запроса.
+
+Таблица vacancy_skills
+id (PK, INTEGER) — уникальный идентификатор записи.
+vacancy_id (FK, INTEGER) — ссылка на таблицу vacancies.
+skill_id (FK, INTEGER) — ссылка на таблицу skills.
