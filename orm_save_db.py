@@ -1,19 +1,23 @@
 from sqlalchemy.orm import sessionmaker
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from orm_sqlite import Region, Vacancy, Schedule, Skill, search_vacancy, vacancies_skills, engine  # Импорт всех классов базы
 
 # Создаем сессию
 Session = sessionmaker(bind = engine)
 
+# Московское фиксированное время UTC+3
+moscow_fixed_tz = timezone(timedelta(hours=3))
+
 def save_search_to_db(region_name, name, schedule, skills):
     # Создаём новую сессию для данной операции
     session = Session()
-    try:
-        # Приводим текстовые данные к нижнему регистру
-        region_name = region_name.lower()
-        name = name.lower()
-        schedule = schedule.lower()
+    
+    # Приводим текстовые данные к нижнему регистру
+    region_name = region_name.lower()
+    name = name.lower()
+    schedule = schedule.lower()
 
+    try:
         # Работа с таблицей Region
         region = session.query(Region).filter(Region.name.ilike(region_name)).first()
         if not region:
@@ -40,7 +44,7 @@ def save_search_to_db(region_name, name, schedule, skills):
             region_id=region.id,
             vacancy_id=vacancy.id,
             schedule_id=schedule_record.id,
-            query_date=datetime.utcnow()
+            query_date=datetime.now(moscow_fixed_tz)
         )
         session.execute(search_entry)
 
