@@ -29,37 +29,41 @@
             </ul>
         </div>
     </nav>
-    <div class="container text-center mt-4" style="max-width: 800px;">
-        <h2 class="text-center">Параметры поиска</h2>
-        <p>
-            {{ region_name }} | {{ name }} | {{ schedule }}
-        </p>
-        <a class="btn btn-primary" href="{{ url_for('form') }}">Изменить параметры</a>
-        <br><br>
-
-        <!-- <h1 class="text-center mt-5">Результаты</h1> -->
-        <p class="h5 text-center">Всего найдено вакансий: {{ total_vacancies }}</p>
-        
-        <table class="table mt-3">
+    <!-- Блок с историей запросов -->
+    <div class="container mt-5">
+    <h2>История запросов</h2>
+        <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Навык</th>
-                    <th>Востребованность</th>
+                    <th>Город</th>
+                    <th>Вакансия</th>
+                    <th>График</th>
+                    <th>Дата запроса</th>
+                    <th>Скиллы</th>
                 </tr>
             </thead>
             <tbody>
-                {% for skill, percentage in skills.items() %}
+                {% for query in queries %}
                 <tr>
-                    <td>{{ skill }}</td>
-                    <td>{{ percentage }}%</td>
+                    <td>{{ query.city }}</td>
+                    <td>{{ query.vacancy_name }}</td>
+                    <td>{{ query.schedule_name }}</td>
+                    <td>{{ query.query_date }}</td>
+                    <td>
+                        {% if query.skills %}
+                            <ul>
+                                {% for skill in query.skills %}
+                                    <li>{{ skill }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            Нет скиллов
+                        {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        
-        <p>
-            <a class="btn btn-primary" href="{{ url_for('index') }}">Вернуться на главную</a>
-        </p>
     </div>
     <!-- Нижний блок с контактами -->
     <footer>

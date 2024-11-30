@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from collections import Counter
-from utils import find_area_id, get_skills, areas
-from orm_save_db import save_search_to_db
+from utils import find_area_id, get_skills, areas, save_search_to_db, get_last_5_queries
 import logging
 import os
 
@@ -82,6 +81,13 @@ def results():
                            schedule=schedule_display, 
                            skills=sorted_skills, 
                            total_vacancies=total_vacancies)
+
+# страница истории запросов
+@app.route('/history')
+def history():
+    # Получаем данные из базы данных
+    queries = get_last_5_queries()
+    return render_template('history.html', queries=queries)
 
 @app.errorhandler(500)
 def internal_error(error):
